@@ -1,7 +1,10 @@
 <?php
 	require_once 'tag.php';
 	require_once 'image.php';
-	echo (new Image())->setAttrs(['src' => 'https://javasea.ru/uploads/posts/2021-06/1623421358_mona-liza.jpg', 'width' => '300px', 'height' => '200px'])->open(); 
-
+	require_once 'link.php';
+	echo (new Link())->setAttr('href', 
+		'/php-exam/Web_design-exam/php/index.php')->setText('index')->show(); 
+	echo '<br>';
+	echo $_SERVER['REQUEST_URI'];
 ?>
 
