@@ -12,15 +12,6 @@
 			return $this;
 		}
 
-		public function setAttrs($attrs){
-	
-		foreach ($attrs as $name => $value) {
-			$this->setAttr($name, $value);
-		}
-		
-		return $this;
-		}
-
 		public function removeAttr($name){
 			unset($this->attrs[$name]);
 			return $this;
@@ -38,12 +29,16 @@
 			return "</$name>";
 		}
 		
-		private function getAttrsStr($attrs){	
+		private function getAttrsStr($attrs){		
 			if (!empty($attrs)) {
 				$result = '';
 				
 				foreach ($attrs as $name => $value) {
-					$result .= " $name=\"$value\"";
+					if ($value === true) {
+						$result .= " $name";
+					} else {
+						$result .= " $name=\"$value\"";
+					}
 				}
 				
 				return $result;
