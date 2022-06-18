@@ -1,5 +1,6 @@
 <?php
-	class Tag{
+	require_once 'iTag.php';
+	class Tag implements iTag{
 		private $name;
 		private $attrs = [];
 		private $text;
@@ -16,8 +17,16 @@
 			return $this->text;
 		}
 
-		public function setAttr($name, $value){
+		public function setAttr($name, $value = true){
 			$this->attrs[$name] = $value;
+			return $this;
+		}
+
+		public function setAttrs($attrs){	
+			foreach ($attrs as $name => $value) {
+				$this->setAttr($name, $value);
+			}
+			
 			return $this;
 		}
 
@@ -38,6 +47,16 @@
 			return "</$name>";
 		}
 		
+		public function show(){	
+			return $this->open() . $this->text . $this->
+				close(); 
+		}
+
+		public function setText($text){	
+			$this->text = $text;
+			return $this;
+		}
+
 		private function getAttrsStr($attrs){		
 			if (!empty($attrs)) {
 				$result = '';
@@ -97,8 +116,7 @@
 					$classNames = $this->removeElem($className, $classNames);
 					$this->attrs['class'] = implode(' ', $classNames);
 				}
-			}
-				
+			}			
 			return $this;
 		}		
 	}
