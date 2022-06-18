@@ -3,10 +3,15 @@
 	require_once 'input.php';
 	require_once 'submit.php';	
 	require_once 'password.php';
-	$form = (new Form)->setAttrs(['action' => 'test.php', 'method' => 'GET']);
+	require_once 'hidden.php';
+	$form = (new Form)->setAttrs([
+		'action' => 'test.php',
+		'method' => 'GET'
+	]);
+	
 	echo $form->open();
-		echo (new Input)->setAttr('name', 'login');
-		echo (new Password)->setAttr('name', 'passw');
+		echo (new Hidden)->setAttr('name', 'id')->setAttr('value', '123');
+		echo (new Input)->setAttr('name', 'year');
 		echo new Submit;
 	echo $form->close();
 ?>
