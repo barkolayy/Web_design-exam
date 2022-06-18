@@ -46,5 +46,33 @@
 				return '';
 			}
 		}
+
+		public function addClass($className){
+			if (isset($this->attrs['class'])) {
+				$classNames = explode(' ', $this->attrs['class']);
+				
+				if (!in_array($className, $classNames)) {
+					$classNames[] = $className;
+					$this->attrs['class'] = implode(' ', $classNames);
+				}
+			} else {
+				$this->attrs['class'] = $className;
+			}
+			
+			return $this;
+		}
+
+		public function removeClass($className){	
+			if (isset($this->attrs['class'])) {
+				$classNames = explode(' ', $this->attrs['class']);
+					
+				if (in_array($className, $classNames)) {
+					$classNames = $this->removeElem($className, $classNames);
+					$this->attrs['class'] = implode(' ', $classNames);
+				}
+			}
+				
+			return $this;
+		}		
 	}
 ?>
