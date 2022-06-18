@@ -4,7 +4,7 @@
 		public function __construct($date = null){	
 			$this->date = $date;
 	        if ($date == null) {
-	            $this->date = date('j-n-Y');
+	            $this->date = date('Y-n-j');
 	        }
 		}
 		
@@ -131,8 +131,8 @@
 			echo date($format, strtotime($this->date));
 		}
 		
-		public function __toString(){
+		/*public function __toString(){
 			echo date('Y-n-j', strtotime($this->date));
-		}
+		}*/
 	}
 ?>
