@@ -2,11 +2,20 @@
 	class Tag{
 		private $name;
 		private $attrs = [];
+		private $text;
 
 		public function __construct($name){
 			$this->name = $name;
 		}
 		
+		public function getName(){			
+			return $this->name;
+		}
+
+		public function getText(){
+			return $this->text;
+		}
+
 		public function setAttr($name, $value){
 			$this->attrs[$name] = $value;
 			return $this;
@@ -47,6 +56,18 @@
 			}
 		}
 
+		public function getAttrs(){
+			return $this->attrs;
+		}
+
+		public function getAttr($attr){
+			if (isset($this->attrs[$attr])){
+				return $this->attrs[$attr];
+			} else {
+			return null;
+			}
+		}
+
 		public function addClass($className){
 			if (isset($this->attrs['class'])) {
 				$classNames = explode(' ', $this->attrs['class']);
@@ -60,6 +81,12 @@
 			}
 			
 			return $this;
+		}
+
+		private function removeElem($elem, $arr){
+			$key = array_search($elem, $arr); 		
+			array_splice($arr, $key, 1);		
+			return $arr; 
 		}
 
 		public function removeClass($className){	
