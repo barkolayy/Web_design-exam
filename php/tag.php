@@ -1,12 +1,22 @@
 <?php
 	class Tag{
 		private $name;
+		private $attrs = [];
 
-		public function __construct($name, $attrs = []){
+		public function __construct($name){
 			$this->name = $name;
-			$this->attrs = $attrs;
 		}
 		
+		public function setAttr($name, $value){
+			$this->attrs[$name] = $value;
+			return $this;
+		}
+
+		public function removeAttr($name){
+			unset($this->attrs[$name]);
+			return $this;
+		}
+
 		public function open(){
 			$name = $this->name;
 			$attrsStr = $this->getAttrsStr($this->attrs);
