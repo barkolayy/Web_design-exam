@@ -10,8 +10,7 @@
 			
 			if ($textAreaName) {
 				if (isset($_REQUEST[$textAreaName])) {
-					$value = $_REQUEST[$textAreaName];
-					
+					$value = $_REQUEST[$textAreaName];				
 					$this->setText($value);
 				}
 			}
