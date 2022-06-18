@@ -2,13 +2,15 @@
 	class Tag{
 		private $name;
 
-		public function __construct($name){
+		public function __construct($name, $attrs = []){
 			$this->name = $name;
+			$this->attrs = $attrs;
 		}
 		
 		public function open(){
 			$name = $this->name;
-			return "<$name>";
+			$attrsStr = $this->getAttrsStr($this->attrs);
+			return "<$name$attrsStr>";
 		}
 
 		public function close(){
@@ -16,5 +18,18 @@
 			return "</$name>";
 		}
 		
+		private function getAttrsStr($attrs){	
+			if (!empty($attrs)) {
+				$result = '';
+				
+				foreach ($attrs as $name => $value) {
+					$result .= " $name=\"$value\"";
+				}
+				
+				return $result;
+			} else {
+				return '';
+			}
+		}
 	}
 ?>
