@@ -21,8 +21,7 @@
 			return parent::open();
 		}
 		
-		public function __toString()
-		{
+		public function __toString(){	
 			return $this->open();
 		}
 	}
